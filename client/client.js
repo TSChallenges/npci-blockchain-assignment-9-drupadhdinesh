@@ -4,7 +4,7 @@ const fs = require('fs');
 
 async function main() {
     try {
-        const ccpPath = path.resolve(__dirname, '../network/connection-org1.json');
+        const ccpPath = path.resolve(__dirname, '../network/connection-Rbi.json');
         const ccp = JSON.parse(fs.readFileSync(ccpPath, 'utf8'));
 
         const walletPath = path.join(process.cwd(), 'wallet');
@@ -22,24 +22,58 @@ async function main() {
         const network = await gateway.getNetwork('mychannel');
         const contract = network.getContract('lendingChaincode');
 
-        // TODO: Implement logic to request a loan
+
         console.log('Submitting transaction: RequestLoan...');
-        // TODO: Call contract.submitTransaction() to request a loan
+        const loanId = 'LOAN' + Math.random().toString(36).substr(2, 9);
+        const borrowerId = 'BORROWER001';
+        const amount = 5000;
+        const interestRate = 7.5;
+        const duration = 12;
+        
+        await contract.submitTransaction(
+            'RequestLoan', 
+            loanId, 
+            borrowerId, 
+            amount.toString(), 
+            interestRate.toString(), 
+            duration.toString()
+        );
         console.log('Loan request submitted successfully.');
 
-        // TODO: Implement logic to approve the loan request
+
         console.log('Approving Loan...');
-        // TODO: Call contract.submitTransaction() to approve a loan
+        const lenderId = 'LENDER001';
+        await contract.submitTransaction(
+            'ApproveLoan', 
+            loanId, 
+            lenderId
+        );
         console.log('Loan approved successfully.');
 
-        // TODO: Implement logic to repay the loan partially
+        
         console.log('Repaying Loan...');
-        // TODO: Call contract.submitTransaction() to repay the loan
+        const repaymentAmount = 1000;
+        await contract.submitTransaction(
+            'RepayLoan', 
+            loanId, 
+            repaymentAmount.toString()
+        );
         console.log('Loan repayment made successfully.');
 
-        // TODO: Implement logic to query loan details
+        
         console.log('Querying loan details...');
-        // TODO: Call contract.evaluateTransaction() to fetch loan details
+        const result = await contract.evaluateTransaction(
+            'QueryLoan', 
+            loanId
+        );
+        const loanDetails = JSON.parse(result.toString());
+        console.log('Loan details:');
+        console.log(`Loan ID: ${loanDetails.LoanID}`);
+        console.log(`Borrower: ${loanDetails.BorrowerID}`);
+        console.log(`Lender: ${loanDetails.LenderID}`);
+        console.log(`Amount: ${loanDetails.Amount}`);
+        console.log(`Status: ${loanDetails.Status}`);
+        console.log(`Remaining Balance: ${loanDetails.RemainingBalance}`);
         console.log('Loan details fetched successfully.');
 
         await gateway.disconnect();

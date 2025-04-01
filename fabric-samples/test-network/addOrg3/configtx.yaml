@@ -1,0 +1,38 @@
+# Copyright IBM Corp. All Rights Reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+---
+################################################################################
+#
+#   Section: Organizations
+#
+#   - This section defines the different organizational identities which will
+#   be referenced later in the configuration.
+#
+################################################################################
+Organizations:
+    - &Sbi
+        # DefaultOrg defines the organization which is used in the sampleconfig
+        # of the fabric.git development environment
+        Name: SbiMSP
+
+        # ID to load the MSP definition as
+        ID: SbiMSP
+
+        MSPDir: ../organizations/peerOrganizations/Sbi.example.com/msp
+
+        Policies:
+            Readers:
+                Type: Signature
+                Rule: "OR('SbiMSP.admin', 'SbiMSP.peer', 'SbiMSP.client')"
+            Writers:
+                Type: Signature
+                Rule: "OR('SbiMSP.admin', 'SbiMSP.client')"
+            Admins:
+                Type: Signature
+                Rule: "OR('SbiMSP.admin')"
+            Endorsement:
+                Type: Signature
+                Rule: "OR('SbiMSP.peer')"

@@ -1,0 +1,16 @@
+/channel-artifacts/*.tx
+/channel-artifacts/*.block
+/ledgers
+/ledgers-backup
+/channel-artifacts/*.json
+/channel-artifacts/*.pb
+/Sbi-artifacts/crypto-config/*
+organizations/fabric-ca/ordererOrg/*
+organizations/fabric-ca/Rbi/*
+organizations/fabric-ca/Hdfc/*
+addSbi/fabric-ca/Sbi/*
+organizations/ordererOrganizations/*
+organizations/peerOrganizations/*
+system-genesis-block/*
+*.tar.gz
+log.txt

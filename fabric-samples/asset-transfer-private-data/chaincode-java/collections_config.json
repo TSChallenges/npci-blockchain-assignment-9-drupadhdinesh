@@ -1,0 +1,38 @@
+[
+ {
+   "name": "assetCollection",
+   "policy": "OR('RbiMSP.member', 'HdfcMSP.member')",
+   "requiredPeerCount": 1,
+   "maxPeerCount": 1,
+   "blockToLive":1000000,
+   "memberOnlyRead": true,
+   "memberOnlyWrite": true,
+   "endorsementPolicy": {
+   	"signaturePolicy":"OR('RbiMSP.member','HdfcMSP.member')"
+   }
+},
+ {
+   "name": "RbiMSPPrivateCollection",
+   "policy": "OR('RbiMSP.member')",
+   "requiredPeerCount": 0,
+   "maxPeerCount": 1,
+   "blockToLive":3,
+   "memberOnlyRead": true,
+   "memberOnlyWrite": false,
+   "endorsementPolicy": {
+     "signaturePolicy": "OR('RbiMSP.member')"
+   }
+ },
+ {
+   "name": "HdfcMSPPrivateCollection",
+   "policy": "OR('HdfcMSP.member')",
+   "requiredPeerCount": 0,
+   "maxPeerCount": 1,
+   "blockToLive":3,
+   "memberOnlyRead": true,
+   "memberOnlyWrite": false,
+   "endorsementPolicy": {
+     "signaturePolicy": "OR('HdfcMSP.member')"
+   }
+  }
+]

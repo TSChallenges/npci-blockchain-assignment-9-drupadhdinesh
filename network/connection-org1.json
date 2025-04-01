@@ -2,7 +2,7 @@
   "name": "fabric-network",
   "version": "1.0.0",
   "client": {
-    "organization": "Org1",
+    "organization": "Rbi",
     "connection": {
       "timeout": {
         "peer": {
@@ -12,14 +12,14 @@
     }
   },
   "organizations": {
-    "Org1": {
-      "mspid": "Org1MSP",
-      "peers": ["peer0.org1.example.com"],
-      "certificateAuthorities": ["ca.org1.example.com"]
+    "Rbi": {
+      "mspid": "RbiMSP",
+      "peers": ["peer0.Rbi.example.com"],
+      "certificateAuthorities": ["ca.Rbi.example.com"]
     }
   },
   "peers": {
-    "peer0.org1.example.com": {
+    "peer0.Rbi.example.com": {
       "url": "grpcs://localhost:7051",
       "tlsCACerts": {
         "pem": "-----BEGIN CERTIFICATE-----\n<CA CERTIFICATE CONTENT>\n-----END CERTIFICATE-----"

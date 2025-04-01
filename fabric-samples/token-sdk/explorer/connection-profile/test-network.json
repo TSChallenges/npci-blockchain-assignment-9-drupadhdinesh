@@ -1,0 +1,48 @@
+{
+	"name": "test-network",
+	"version": "1.0.0",
+	"client": {
+		"tlsEnable": true,
+		"adminCredential": {
+			"id": "exploreradmin",
+			"password": "exploreradminpw"
+		},
+		"enableAuthentication": true,
+		"organization": "RbiMSP",
+		"connection": {
+			"timeout": {
+				"peer": {
+					"endorser": "300"
+				},
+				"orderer": "300"
+			}
+		}
+	},
+	"channels": {
+		"mychannel": {
+			"peers": {
+				"peer0.Rbi.example.com": {}
+			}
+		}
+	},
+	"organizations": {
+		"RbiMSP": {
+			"mspid": "RbiMSP",
+			"adminPrivateKey": {
+				"path": "/tmp/crypto/peerOrganizations/Rbi.example.com/users/User1@Rbi.example.com/msp/keystore/priv_sk"
+			},
+			"peers": ["peer0.Rbi.example.com"],
+			"signedCert": {
+				"path": "/tmp/crypto/peerOrganizations/Rbi.example.com/users/User1@Rbi.example.com/msp/signcerts/User1@Rbi.example.com-cert.pem"
+			}
+		}
+	},
+	"peers": {
+		"peer0.Rbi.example.com": {
+			"tlsCACerts": {
+				"path": "/tmp/crypto/peerOrganizations/Rbi.example.com/peers/peer0.Rbi.example.com/tls/ca.crt"
+			},
+			"url": "grpcs://peer0.Rbi.example.com:7051"
+		}
+	}
+}
